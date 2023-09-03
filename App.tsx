@@ -9,7 +9,9 @@ import {
   DarkTheme,
   DefaultTheme,
 } from "@react-navigation/native";
-import Tabs from "./navigation/Tabs";
+import Root from "./navigation/Root";
+import { darkTheme, lightTheme } from "./styled";
+import { ThemeProvider } from 'styled-components';
 
 const loadFonts = (fonts) => fonts.map((font) => Font.loadAsync(font));
 const loadImages = (images) =>
@@ -46,8 +48,10 @@ export default function App() {
     );
   }
   return (
-    <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
-      <Tabs />
-    </NavigationContainer>
+    <ThemeProvider theme={isDark? darkTheme: lightTheme}>
+      <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
+        <Root />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
